@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 
     <meta
         name="description"
-        content="Read the digital edition of My Book."
+        content="Read and download the digital edition of My Book."
     >
 
     <style>
@@ -16,63 +17,143 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+            padding: 0;
+            min-height: 100%;
             font-family: Arial, sans-serif;
-
             background: #000;
             color: #fff;
         }
 
+        body {
+            min-height: 100vh;
+        }
+
         .container {
-            width: min(90%, 700px);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Header */
+        .header {
             text-align: center;
-            padding: 40px 20px;
+            margin-bottom: 25px;
         }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
         }
 
-        p {
+        .header p {
+            margin: 0;
             color: #aaa;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.6;
         }
 
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
         .button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 15px 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 24px;
 
             background: #fff;
             color: #000;
 
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
 
             border-radius: 8px;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
         }
 
         .button:hover {
             opacity: 0.85;
+            transform: translateY(-2px);
         }
 
-        .download {
-            display: block;
-            margin-top: 20px;
-            color: #aaa;
-            text-decoration: none;
-        }
-
-        .download:hover {
+        .button.secondary {
+            background: #161616;
             color: #fff;
+            border: 1px solid #333;
+        }
+
+        /* PDF Viewer */
+        .pdf-wrapper {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+
+            overflow: hidden;
+
+            background: #111;
+            border: 1px solid #292929;
+            border-radius: 12px;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+
+            border: none;
+            display: block;
+
+            background: #111;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 25px 0 10px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            .container {
+                padding: 20px 10px;
+            }
+
+            .header {
+                margin-bottom: 15px;
+            }
+
+            .actions {
+                margin: 18px 0;
+            }
+
+            .button {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .pdf-wrapper {
+                height: 75vh;
+                min-height: 500px;
+                border-radius: 8px;
+            }
         }
     </style>
 </head>
@@ -81,29 +162,70 @@
 
     <main class="container">
 
-        <h1>My Book</h1>
+        <!-- Book Header -->
+        <header class="header">
 
-        <p>
-            Read the complete digital edition of this book.
-        </p>
+            <h1>My Book</h1>
 
-        <a
-            class="button"
-            href="book.pdf"
-            target="_blank"
+            <p>
+                Read the complete digital edition below.
+            </p>
+
+        </header>
+
+
+        <!-- Actions -->
+        <div class="actions">
+
+            <!-- Download -->
+            <a
+                class="button"
+                href="book.pdf"
+                download="My-Book.pdf"
+            >
+                Download PDF
+            </a>
+
+            <!-- Open PDF -->
+            <a
+                class="button secondary"
+                href="book.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Full Screen
+            </a>
+
+        </div>
+
+
+        <!-- PDF Viewer -->
+        <section
+            class="pdf-wrapper"
+            aria-label="Book PDF viewer"
         >
-            Read Book
-        </a>
 
-        <a
-            class="download"
-            href="book.pdf"
-            download
-        >
-            Download PDF
-        </a>
+            <iframe
+                class="pdf-viewer"
+                src="book.pdf"
+                title="My Book PDF"
+            >
+            </iframe>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <p>
+                © 2026 My Book. All rights reserved.
+            </p>
+
+        </footer>
 
     </main>
 
 </body>
 </html>
+```
